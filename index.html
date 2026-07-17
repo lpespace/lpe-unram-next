@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LPE × Unram · Web Development 2026 — Silabus + Dokumentasi API</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#F5F0E8; --ink:#1A1A2E; --teal:#00C4A7; --coral:#FF6B35;
+    --ink-40:rgba(26,26,46,.40); --ink-15:rgba(26,26,46,.15); --ink-08:rgba(26,26,46,.08);
+    --line:rgba(26,26,46,.14); --card:#FFFDF8;
+    --teal-12:rgba(0,196,167,.12); --coral-12:rgba(255,107,53,.12);
+    --display:'Space Grotesk',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:70px}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);-webkit-font-smoothing:antialiased;
+    background-image:linear-gradient(var(--ink-08) 1px,transparent 1px),linear-gradient(90deg,var(--ink-08) 1px,transparent 1px);
+    background-size:34px 34px;background-position:center;line-height:1.5}
+  .wrap{max-width:1080px;margin:0 auto;padding:26px clamp(16px,4vw,40px) 60px}
+  code{font-family:var(--mono)}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-40);font-weight:700}
+  h2.sec{font-family:var(--display);font-weight:700;font-size:clamp(17px,2vw,22px);margin:0 0 4px;display:flex;align-items:center;gap:11px}
+  h2.sec::before{content:"";width:13px;height:13px;background:var(--teal);flex:none}
+  .sectop{margin:44px 0 18px;border-top:1.5px solid var(--ink);padding-top:16px}
+  .lead{font-size:13.5px;max-width:76ch;margin:0 0 16px;line-height:1.55}
+
+  /* ---------- header ---------- */
+  header{border-bottom:1.5px solid var(--ink);padding-bottom:18px;margin-bottom:8px}
+  .brandrow{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;margin-bottom:18px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .logo-img{height:38px;width:auto;max-width:150px;object-fit:contain;display:block;flex:none}
+  .mark{width:30px;height:30px;background:var(--ink);position:relative;flex:none}
+  .mark::after{content:"";position:absolute;inset:8px;background:var(--teal)}
+  .brand .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-40);line-height:1.35}
+  .brand .lbl b{display:block;color:var(--ink);font-size:12.5px;letter-spacing:.14em}
+  .doctag{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-40);border:1.5px solid var(--ink-15);padding:6px 10px}
+  h1{font-family:var(--display);font-weight:700;font-size:clamp(26px,4vw,42px);line-height:1.02;margin:0 0 12px;letter-spacing:-.01em}
+  h1 span{color:var(--teal)}
+  .metastrip{display:flex;flex-wrap:wrap;gap:8px}
+  .pill{font-family:var(--mono);font-size:11px;background:var(--ink);color:var(--paper);padding:6px 11px;letter-spacing:.03em}
+  .pill.alt{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+  .pill.hot{background:var(--coral);color:#fff}
+
+  /* ---------- sticky nav ---------- */
+  .navbar{position:sticky;top:0;z-index:50;background:var(--paper);border-bottom:1.5px solid var(--ink);margin:0 0 0}
+  .navinner{max-width:1080px;margin:0 auto;padding:0 clamp(16px,4vw,40px);display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+  .navinner::-webkit-scrollbar{display:none}
+  .navinner a{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-40);text-decoration:none;padding:12px 11px;white-space:nowrap;border-bottom:2.5px solid transparent;transition:color .2s,border-color .2s}
+  .navinner a:hover{color:var(--ink)}
+  .navinner a.on{color:var(--ink);font-weight:700;border-bottom-color:var(--teal)}
+
+  /* ---------- review banner ---------- */
+  .banner{background:var(--card);border:1.5px solid var(--ink);box-shadow:6px 6px 0 var(--ink);padding:20px 22px;margin-top:22px}
+  .banner h3{font-family:var(--display);font-weight:600;font-size:16px;margin:6px 0 4px}
+  .banner p{margin:0 0 14px;font-size:13.5px;max-width:72ch}
+  .ups{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .up{border-left:3px solid var(--teal);padding-left:12px}
+  .up .num2{font-family:var(--mono);font-size:10px;color:var(--teal);font-weight:700;letter-spacing:.1em}
+  .up .h{font-family:var(--display);font-weight:600;font-size:13.5px;margin:3px 0 3px;line-height:1.2}
+  .up .d{font-size:11.5px;color:var(--ink-40);line-height:1.35}
+
+  /* ---------- project ---------- */
+  .project{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1.5px solid var(--ink);box-shadow:6px 6px 0 var(--ink);margin-top:18px;background:var(--card)}
+  .project .l{padding:20px 22px;border-right:1.5px solid var(--ink)}
+  .project .r{padding:20px 22px}
+  .project h3{font-family:var(--display);font-weight:700;font-size:19px;margin:6px 0 8px}
+  .project p{margin:0 0 12px;font-size:13px;line-height:1.5}
+  .routes{display:flex;flex-direction:column;gap:7px}
+  .route{display:flex;gap:11px;align-items:baseline;font-size:12.5px}
+  .route code{font-family:var(--mono);font-size:11.5px;background:var(--ink);color:var(--paper);padding:3px 8px;flex:none}
+  .apinote{background:var(--coral-12);border-left:3px solid var(--coral);padding:10px 13px;font-size:12.5px;margin-top:4px}
+  .apinote b{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--coral);display:block;margin-bottom:3px}
+
+  /* ---------- decision ---------- */
+  .decision{background:#fff;border:1.5px solid var(--ink);box-shadow:6px 6px 0 var(--ink);padding:20px 22px;margin-top:18px}
+  .decision .top{display:flex;align-items:center;gap:10px;margin-bottom:9px;flex-wrap:wrap}
+  .decision .lab{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#fff;font-weight:700;background:var(--ink);padding:4px 9px}
+  .decision .top b{font-family:var(--display);font-size:15px}
+  .decision p{margin:0 0 10px;font-size:13px;max-width:76ch;line-height:1.5}
+  .tradeoff{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+  .to{border:1.5px solid var(--ink-15);padding:12px 14px}
+  .to.win{border-color:var(--teal);background:var(--teal-12)}
+  .to.cost{border-color:var(--coral);background:var(--coral-12);border-style:dashed}
+  .to .h{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:6px}
+  .to.win .h{color:var(--teal)} .to.cost .h{color:var(--coral)}
+  .to p{margin:0;font-size:12.5px;line-height:1.45}
+
+  /* ---------- AI policy ---------- */
+  .aipol{border:1.5px solid var(--ink);background:var(--ink);color:var(--paper);box-shadow:6px 6px 0 rgba(26,26,46,.25);padding:22px;margin-top:18px}
+  .aipol .top{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+  .aipol .lab{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);font-weight:700;background:var(--teal);padding:4px 9px}
+  .aipol .top b{font-family:var(--display);font-size:16px;color:#fff}
+  .aipol>p{margin:0 0 14px;font-size:13px;max-width:78ch;line-height:1.55;color:rgba(245,240,232,.85)}
+  .loop{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+  .lp{border:1.5px solid rgba(245,240,232,.3);padding:11px 12px}
+  .lp .num2{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;color:var(--teal);font-weight:700}
+  .lp .h{font-family:var(--display);font-weight:600;font-size:13px;margin:3px 0 3px;color:#fff}
+  .lp .d{font-size:11.5px;color:rgba(245,240,232,.6);line-height:1.35}
+  .rules{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .rl{padding:12px 14px;border:1.5px solid rgba(245,240,232,.3)}
+  .rl.yes{border-color:var(--teal);background:rgba(0,196,167,.12)}
+  .rl.no{border-color:var(--coral);background:rgba(255,107,53,.12);border-style:dashed}
+  .rl .h{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:7px}
+  .rl.yes .h{color:var(--teal)} .rl.no .h{color:var(--coral)}
+  .rl ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px}
+  .rl li{font-size:12.3px;line-height:1.4;display:flex;gap:8px;align-items:flex-start;color:rgba(245,240,232,.9)}
+  .rl li::before{content:"";width:8px;height:8px;margin-top:4px;flex:none}
+  .rl.yes li::before{background:var(--teal)} .rl.no li::before{background:var(--coral)}
+  .warnbox{margin-top:14px;background:var(--coral);color:#fff;padding:12px 15px;font-size:12.8px;line-height:1.45}
+  .warnbox b{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:4px}
+
+  /* ---------- prereq ---------- */
+  .callout{background:var(--coral-12);border:1.5px dashed var(--coral);padding:20px 22px;margin-top:18px}
+  .callout .top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+  .callout .top .lab{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--coral);font-weight:700;background:#fff;border:1.5px solid var(--coral);padding:4px 9px}
+  .callout .top b{font-family:var(--display);font-size:15px}
+  .callout p{margin:0 0 12px;font-size:13px;max-width:74ch}
+  .preq{display:grid;grid-template-columns:1fr 1fr;gap:8px 24px;margin:0;padding:0}
+  .preq li{list-style:none;font-size:13px;display:flex;gap:9px;align-items:flex-start;line-height:1.35}
+  .preq li::before{content:"";width:9px;height:9px;background:var(--coral);margin-top:5px;flex:none}
+  .gate{margin-top:14px;background:#fff;border:1.5px solid var(--ink);padding:11px 14px;font-size:12.5px}
+  .gate b{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--coral);display:block;margin-bottom:3px}
+  .gate+.gate{margin-top:8px}
+
+  /* ---------- stack ---------- */
+  .stack{display:flex;flex-wrap:wrap;gap:8px}
+  .tchip{font-family:var(--mono);font-size:12px;background:var(--card);border:1.5px solid var(--ink);box-shadow:3px 3px 0 var(--ink);padding:8px 13px}
+  .tchip.ai{background:var(--ink);color:var(--paper)}
+  .tchip.api{background:var(--coral);color:#fff}
+  .tchip.js{background:var(--teal);color:#fff}
+
+  /* ---------- sessions ---------- */
+  .stabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+  .stab{flex:1;min-width:150px;font-family:var(--body);text-align:left;background:var(--card);border:1.5px solid var(--ink);box-shadow:3px 3px 0 var(--ink);padding:11px 13px;cursor:pointer;transition:transform .12s var(--ease),box-shadow .12s var(--ease),background .2s;color:var(--ink)}
+  .stab:hover{transform:translate(1px,1px);box-shadow:2px 2px 0 var(--ink)}
+  .stab .sn{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--ink-40);font-weight:700}
+  .stab .st{font-family:var(--display);font-weight:600;font-size:13.5px;line-height:1.15;margin-top:3px}
+  .stab.active{background:var(--ink);color:var(--paper)}
+  .stab.active .sn{color:var(--teal)}
+  .stab.demo.active{background:var(--coral)}
+  .stab.demo.active .sn{color:#fff}
+  .stab:focus-visible{outline:none;box-shadow:3px 3px 0 var(--ink),0 0 0 3px var(--paper),0 0 0 5px var(--teal)}
+
+  .panel{background:var(--card);border:1.5px solid var(--ink);box-shadow:6px 6px 0 var(--ink);padding:clamp(20px,2.6vw,30px)}
+  .phead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;border-bottom:1.5px solid var(--line);padding-bottom:16px;margin-bottom:18px}
+  .phead .big{font-family:var(--display);font-weight:700;font-size:clamp(20px,2.6vw,28px);line-height:1.05;margin:4px 0 0}
+  .phead .bignum{font-family:var(--display);font-weight:700;font-size:clamp(40px,6vw,68px);line-height:.8;color:var(--ink-15);letter-spacing:-.03em}
+  .goal{background:var(--teal-12);border-left:3px solid var(--teal);padding:10px 14px;font-size:13.5px;margin-bottom:14px}
+  .goal b{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);display:block;margin-bottom:2px}
+  .ckpt{background:#fff;border:1.5px dashed var(--ink);padding:9px 13px;font-size:12.3px;margin-bottom:20px;font-family:var(--mono)}
+  .ckpt b{color:var(--coral);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:3px}
+
+  .pgrid{display:grid;grid-template-columns:1.25fr 1fr;gap:26px}
+  .rundown{display:flex;flex-direction:column}
+  .rdhead{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-40);margin-bottom:12px}
+  .block{display:grid;grid-template-columns:74px 1fr;gap:13px;padding:9px 0;border-top:1px solid var(--line);align-items:start}
+  .block:first-of-type{border-top:none}
+  .block .tm{font-family:var(--mono);font-size:11px;color:var(--ink-40);padding-top:2px}
+  .block .ac{font-size:13.5px;line-height:1.4}
+  .block .ac .tg{display:inline-block;font-family:var(--mono);font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:2px 6px;margin-left:7px;vertical-align:middle;transform:translateY(-1px)}
+  .tg.aifree{background:var(--ink);color:var(--paper)}
+  .tg.build{background:var(--teal);color:#fff}
+  .tg.deploy,.tg.demo{background:var(--coral);color:#fff}
+  .tg.core{background:transparent;border:1.5px solid var(--teal);color:var(--teal)}
+  .tg.brk{background:transparent;border:1.5px dashed var(--ink-40);color:var(--ink-40)}
+
+  .side{display:flex;flex-direction:column;gap:14px}
+  .box{border:1.5px solid var(--ink-15);padding:13px 15px}
+  .box.deliver{border-color:var(--teal);background:var(--teal-12)}
+  .box.ai{border-color:var(--ink);background:#fff}
+  .box.pr{border-style:dashed}
+  .box .bl{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:7px}
+  .box.deliver .bl{color:var(--teal)} .box.ai .bl{color:var(--ink)}
+  .box p{margin:0;font-size:12.8px;line-height:1.45}
+  .sq{width:9px;height:9px;flex:none}
+  .sq.t{background:var(--teal)} .sq.i{background:var(--ink)} .sq.c{background:var(--coral)}
+
+  .anim{opacity:0;transform:translateY(8px)}
+  .anim.run{opacity:1;transform:none;transition:opacity .4s var(--ease),transform .4s var(--ease)}
+
+  /* ---------- lists ---------- */
+  ul.clean{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+  ul.clean li{display:flex;gap:11px;align-items:flex-start;font-size:13.5px;line-height:1.4}
+  ul.clean li::before{content:"";width:10px;height:10px;background:var(--teal);margin-top:4px;flex:none}
+  ul.clean.coral li::before{background:var(--coral)}
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:10px 28px}
+  .nextfirst{border:1.5px solid var(--coral);background:var(--coral-12);padding:12px 15px;margin-bottom:14px;font-size:13.5px}
+  .nextfirst .t{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--coral);display:block;margin-bottom:4px;font-weight:700}
+
+  /* ---------- ops ---------- */
+  .ops{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .op{background:var(--card);border:1.5px solid var(--ink);box-shadow:4px 4px 0 var(--ink);padding:16px 18px}
+  .op .num2{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;color:var(--teal);font-weight:700}
+  .op h4{font-family:var(--display);font-weight:600;font-size:15px;margin:5px 0 7px}
+  .op p{margin:0;font-size:12.5px;line-height:1.45}
+  .op code{font-family:var(--mono);font-size:11px;background:var(--ink-08);padding:2px 5px}
+
+  /* ---------- API: draft banner ---------- */
+  .draft{background:var(--coral);color:#fff;border:1.5px solid var(--ink);box-shadow:6px 6px 0 var(--ink);padding:20px 22px;margin-bottom:18px}
+  .draft .t{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;background:#fff;color:var(--coral);padding:4px 9px;display:inline-block;margin-bottom:9px}
+  .draft h3{font-family:var(--display);font-weight:700;font-size:17px;margin:0 0 7px}
+  .draft p{margin:0 0 8px;font-size:13px;max-width:78ch;line-height:1.5}
+  .draft p:last-child{margin:0}
+
+  .baseinfo{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
+  .bi{background:var(--card);border:1.5px solid var(--ink);box-shadow:4px 4px 0 var(--ink);padding:16px 18px}
+  .bi .h{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);font-weight:700;margin-bottom:7px}
+  .bi .v{font-family:var(--mono);font-size:13px;word-break:break-all;margin-bottom:6px}
+  .bi p{margin:0;font-size:12.3px;color:var(--ink-40);line-height:1.4}
+
+  /* API: session map */
+  .apimap{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px}
+  .mp{background:var(--card);border:1.5px solid var(--ink);box-shadow:4px 4px 0 var(--ink);padding:14px 16px}
+  .mp .num2{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;color:var(--teal);font-weight:700}
+  .mp h4{font-family:var(--display);font-weight:600;font-size:14px;margin:4px 0 6px}
+  .mp p{margin:0;font-size:12px;line-height:1.4}
+  .mp code{font-size:10.5px;background:var(--ink-08);padding:1px 4px}
+
+  /* API: endpoint cards */
+  .ep{background:var(--card);border:1.5px solid var(--ink);box-shadow:6px 6px 0 var(--ink);margin-bottom:22px}
+  .ep .head{display:flex;align-items:center;gap:11px;padding:14px 18px;border-bottom:1.5px solid var(--ink);flex-wrap:wrap}
+  .verb{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.08em;background:var(--teal);color:#fff;padding:4px 9px}
+  .path{font-family:var(--mono);font-size:14px;font-weight:500}
+  .epuse{margin-left:auto;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-40);border:1.5px solid var(--ink-15);padding:3px 8px}
+  .ep .bodyx{padding:16px 18px}
+  .ep .desc{font-size:13px;margin:0 0 14px;line-height:1.5;max-width:76ch}
+
+  table{width:100%;border-collapse:collapse;margin:0 0 14px;font-size:12.6px}
+  th{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-40);text-align:left;padding:8px 10px;border-bottom:1.5px solid var(--ink);font-weight:700}
+  td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.4}
+  td:first-child{font-family:var(--mono);font-weight:500;white-space:nowrap}
+  .ty{font-family:var(--mono);font-size:11px;color:var(--teal)}
+
+  /* API: code blocks */
+  .codewrap{margin:0 0 14px}
+  .codehead{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--ink);color:rgba(245,240,232,.6);font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;padding:7px 12px;border:1.5px solid var(--ink);border-bottom:none}
+  .cpy{font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;background:transparent;border:1px solid rgba(245,240,232,.35);color:rgba(245,240,232,.8);padding:3px 8px;cursor:pointer;transition:.2s;flex:none}
+  .cpy:hover{background:var(--teal);border-color:var(--teal);color:var(--ink)}
+  pre{margin:0;background:var(--ink);color:#F5F0E8;padding:14px 16px;overflow-x:auto;border:1.5px solid var(--ink);font-family:var(--mono);font-size:12px;line-height:1.65}
+  .ck{color:#00C4A7} .cs{color:#FFD9A0} .cn{color:#9FD5FF} .cc{color:rgba(245,240,232,.4)}
+
+  .note{border-left:3px solid var(--teal);background:var(--teal-12);padding:11px 14px;font-size:12.6px;line-height:1.45;margin:0 0 14px}
+  .note b.lbl2{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);display:block;margin-bottom:3px}
+  .note.warn{border-color:var(--coral);background:var(--coral-12)}
+  .note.warn b.lbl2{color:var(--coral)}
+
+  ul.check{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+  ul.check li{display:flex;gap:11px;align-items:flex-start;font-size:13.2px;line-height:1.45}
+  ul.check li::before{content:"";width:13px;height:13px;border:1.5px solid var(--coral);margin-top:3px;flex:none}
+
+  /* ---------- changes ---------- */
+  .change{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1.5px solid var(--ink);background:var(--card)}
+  .ch-old,.ch-new{padding:11px 15px;border-top:1px solid var(--line);font-size:12.8px;line-height:1.4}
+  .ch-old{color:var(--ink-40);border-right:1px solid var(--line)}
+  .ch-new{font-weight:500}
+  .ch-head{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;padding:10px 15px;border-bottom:1.5px solid var(--ink)}
+  .ch-head.old{color:var(--ink-40);border-right:1px solid var(--line)}
+  .ch-head.new{color:var(--teal)}
+  .ch-old s{text-decoration-color:var(--coral)}
+
+  footer{margin-top:48px;border-top:1.5px solid var(--ink);padding-top:16px;font-family:var(--mono);font-size:11px;color:var(--ink-40);letter-spacing:.04em;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+  @media (max-width:820px){
+    .ups,.loop,.apimap{grid-template-columns:1fr 1fr}
+    .preq,.pgrid,.twocol,.tradeoff,.rules,.ops,.baseinfo{grid-template-columns:1fr}
+    .project{grid-template-columns:1fr}
+    .project .l{border-right:none;border-bottom:1.5px solid var(--ink)}
+    .epuse{margin-left:0}
+  }
+  @media (max-width:560px){.ups,.loop,.apimap{grid-template-columns:1fr}}
+  @media print{body{background:none}.stab,.cpy,.navbar{display:none}.panel,.ep,.bi,.mp,.op{box-shadow:none}}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.anim{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div class="wrap" style="padding-bottom:0">
+  <header>
+    <div class="brandrow">
+      <div class="brand">
+        <img class="logo-img" id="lpeLogo" src="https://production.s3.nevaobjects.id/evenin/organizers/1784255184_Frame%2015%202.png" alt="Lombok Product Engineer" />
+        <div class="mark" id="lpeFallback" hidden></div>
+        <div class="lbl">Lombok Product Engineer × Panitia Unram<b>WEB DEVELOPMENT 2026</b></div>
+      </div>
+      <div class="doctag">Silabus + Dokumentasi API · v7</div>
+    </div>
+    <h1>Frontend Engineering<br><span>Next.js + React (JavaScript)</span></h1>
+    <div class="metastrip">
+      <span class="pill">5 Sesi × 4 Jam</span>
+      <span class="pill">Total 20 Jam</span>
+      <span class="pill hot">Project: Landing Page Toko UMKM</span>
+      <span class="pill alt">JavaScript · TypeScript-ready</span>
+      <span class="pill alt">AI: Gemini (generatif)</span>
+      <span class="pill alt">Outcome: Toko live di Vercel + Demo Day</span>
+    </div>
+  </header>
+</div>
+
+<nav class="navbar">
+  <div class="navinner" id="navinner">
+    <a href="#review">Review</a>
+    <a href="#ai">Kebijakan AI</a>
+    <a href="#project">Project</a>
+    <a href="#prasyarat">Prasyarat</a>
+    <a href="#sesi">5 Sesi</a>
+    <a href="#operasional">Operasional</a>
+    <a href="#api">Dokumentasi API</a>
+    <a href="#standar">Standar &amp; Next</a>
+    <a href="#perubahan">Yang Diubah</a>
+  </div>
+</nav>
+
+<div class="wrap" style="padding-top:22px">
+
+  <!-- REVIEW -->
+  <div id="review" class="banner">
+    <span class="eyebrow">Catatan Review LPE</span>
+    <h3>Disesuaikan dengan kondisi nyata frontend engineering 2026</h3>
+    <p>Versi ini adalah hasil review LPE atas silabus dari Panitia Unram. Strukturnya sudah kuat — kami pertahankan inti yang sudah modern (App Router, Tailwind, deploy ke Vercel, project-based) dan menutup empat celah agar lulusan siap masuk dunia frontend hari ini.</p>
+    <div class="ups">
+      <div class="up"><div class="num2">01</div><div class="h">TypeScript-ready</div><div class="d">Program memakai JavaScript agar 20 jam cukup — ditulis dengan pola siap migrasi, dan TS jadi langkah lanjut #1.</div></div>
+      <div class="up"><div class="num2">02</div><div class="h">AI sebagai metode build</div><div class="d">Gemini dipakai generatif (chat), bukan agentic. "AI proposes, you decide."</div></div>
+      <div class="up"><div class="num2">03</div><div class="h">Git sejak Sesi 1</div><div class="d">Version control adalah prasyarat kerja apa pun — dipindah dari akhir ke menit pertama.</div></div>
+      <div class="up"><div class="num2">04</div><div class="h">Outcome &amp; jalur lanjut</div><div class="d">Toko live + Demo Day + tier "What's Next" agar peserta tahu deploy ≠ selesai.</div></div>
+    </div>
+  </div>
+
+  <!-- AI POLICY -->
+  <div id="ai" class="aipol">
+    <div class="top"><span class="lab">Kebijakan AI</span><b>Gemini · generatif, bukan agentic</b></div>
+    <p>AI dipakai sebagai <b>metode build</b>, bukan materi pelajaran. Alatnya <b>Gemini dalam bentuk chat generatif</b> — bukan agent yang mengedit file sendiri (Cursor composer, Copilot agent, dsb.). Ini disengaja dan justru menguntungkan pemula: karena kode harus dibaca lalu diketik/ditempel sendiri, prinsip <b>"AI proposes, you decide"</b> ditegakkan oleh alurnya, bukan sekadar oleh niat.</p>
+    <div class="loop">
+      <div class="lp"><div class="num2">01 · TANYA</div><div class="h">Prompt ke Gemini</div><div class="d">Jelaskan konteks &amp; tujuan, bukan "buatkan semuanya".</div></div>
+      <div class="lp"><div class="num2">02 · BACA</div><div class="h">Pahami jawabannya</div><div class="d">Kalau tidak paham satu baris pun — tanya lagi, jangan tempel.</div></div>
+      <div class="lp"><div class="num2">03 · PUTUSKAN</div><div class="h">Ketik / tempel sendiri</div><div class="d">Peserta yang menulis ke project. Boleh tolak saran Gemini.</div></div>
+      <div class="lp"><div class="num2">04 · VERIFIKASI</div><div class="h">Uji di browser</div><div class="d">Jalan atau tidak? Sesuai dokumentasi resmi atau tidak?</div></div>
+    </div>
+    <div class="rules">
+      <div class="rl yes">
+        <div class="h">Gemini dipakai untuk</div>
+        <ul>
+          <li>Menjelaskan pesan error dengan bahasa manusia</li>
+          <li>Menjelaskan konsep ulang dengan analogi berbeda</li>
+          <li>Scaffold boilerplate berulang (struktur section, varian komponen)</li>
+          <li>Menjelaskan struktur JSON response API katalog</li>
+          <li>Usul perbaikan aksesibilitas / performa</li>
+          <li>Review kode peserta: "apa yang bisa lebih rapi?"</li>
+        </ul>
+      </div>
+      <div class="rl no">
+        <div class="h">Gemini tidak dipakai untuk</div>
+        <ul>
+          <li>Blok AI-free (Sesi 1, React fundamental) — bangun otot dasar dulu</li>
+          <li>Menempel kode yang belum dipahami peserta</li>
+          <li>Menggantikan dokumentasi resmi Next.js</li>
+          <li>Mengerjakan PR sepenuhnya tanpa peserta membacanya</li>
+          <li>Mode agentic / auto-edit file (di luar cakupan program)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="warnbox"><b>Wajib dibriefkan mentor ke peserta</b>Pengetahuan Gemini kemungkinan tertinggal dari Next.js 16. Ia sering menyarankan pola lama: Pages Router (<code>pages/</code>), <code>getServerSideProps</code>, atau <code>params</code> sinkron. Semua itu <b>salah</b> untuk program ini. Aturannya: <b>dokumentasi resmi = kebenaran, Gemini = usulan.</b> Pemula tidak bisa membedakan mana yang usang — jadi ini harus diucapkan eksplisit di Sesi 1.</div>
+  </div>
+
+  <!-- PROJECT -->
+  <div id="project" class="sectop"><h2 class="sec">Project: Landing Page &amp; Katalog Toko UMKM</h2></div>
+  <div class="project">
+    <div class="l">
+      <span class="eyebrow">Apa yang dibangun</span>
+      <h3>Situs toko untuk UMKM nyata</h3>
+      <p>Setiap peserta membangun landing page + katalog produk untuk sebuah toko/UMKM — sesuatu yang benar-benar bisa dipakai. Foto produk membuat optimasi gambar terasa nyata, SEO penting agar toko ditemukan di Google, dan tombol pesan langsung terhubung ke WhatsApp.</p>
+      <div class="apinote"><b>Sumber data · disediakan panitia</b>Data katalog produk diambil dari API yang disediakan panitia. Peserta cukup fetch &amp; konsumsi — tanpa membangun backend sendiri. Kontrak lengkapnya ada di bagian <b>Dokumentasi API</b> di bawah.</div>
+    </div>
+    <div class="r">
+      <span class="eyebrow">Struktur halaman</span>
+      <div class="routes" style="margin-top:10px">
+        <div class="route"><code>/</code><span>Landing — hero (nama toko + CTA), highlight produk, tentang, kontak/lokasi, footer</span></div>
+        <div class="route"><code>/tentang</code><span>Cerita &amp; profil toko</span></div>
+        <div class="route"><code>/produk</code><span>Grid katalog + filter kategori</span></div>
+        <div class="route"><code>/produk/[slug]</code><span>Detail produk: foto, harga, deskripsi, tombol <b>Pesan via WhatsApp</b></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LANGUAGE DECISION -->
+  <div class="decision">
+    <div class="top"><span class="lab">Keputusan · Bahasa</span><b>Program ini memakai JavaScript, bukan TypeScript</b></div>
+    <p>Keputusan sadar, bukan kelalaian. Dalam 20 jam, prioritas utama adalah <b>setiap peserta berhasil men-deploy toko yang benar-benar live</b>. TypeScript akan memakan ±50 menit di Sesi 1 plus gesekan di tiap sesi berikutnya — biaya yang terlalu besar untuk kohort pemula. Waktu itu kami alihkan ke <b>fundamental React/JSX</b>, yang manfaatnya langsung terasa di seluruh project.</p>
+    <div class="tradeoff">
+      <div class="to win">
+        <div class="h">Yang didapat</div>
+        <p>±45 menit kembali ke fundamental React · tanpa error tipe yang membingungkan pemula · lebih banyak peserta mencapai Demo Day dengan toko live · fokus penuh ke konsep Next.js (App Router, Server/Client, fetch).</p>
+      </div>
+      <div class="to cost">
+        <div class="h">Yang dikorbankan (dan cara menutupnya)</div>
+        <p>TypeScript kini standar default industri. Kami tutup dengan: kode ditulis rapi &amp; siap migrasi, dokumentasi bentuk data API disediakan panitia, dan <b>TypeScript ditempatkan sebagai langkah lanjut #1</b> di tier "What's Next" — disampaikan eksplisit di Sesi 5.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PREREQ -->
+  <div id="prasyarat" class="callout">
+    <div class="top"><span class="lab">Penting · Prasyarat</span><b>20 jam butuh fondasi yang jelas</b></div>
+    <p>20 jam tidak cukup dari nol mutlak hingga toko Next.js yang live. Maka fundamental <b>dan setup environment</b> dijadikan <b>pre-work mandiri (asinkron) yang wajib</b> diselesaikan sebelum Sesi 1 — bukan menghabiskan jam tatap muka. Peserta datang sudah membawa:</p>
+    <ul class="preq">
+      <li>HTML semantik + layout CSS (Flexbox &amp; Grid)</li>
+      <li>JavaScript: function, array methods (map/filter/find)</li>
+      <li>ES6+: arrow function, destructuring, template literal, spread</li>
+      <li>async/await + fetch ke API publik</li>
+      <li>ES Module: import / export</li>
+      <li><b>Node.js v20+ terpasang &amp; VS Code siap</b> (ESLint, Prettier, Tailwind IntelliSense)</li>
+      <li>Akun GitHub &amp; akun Vercel (login via GitHub)</li>
+      <li>Dasar Git: add, commit, push</li>
+    </ul>
+    <div class="gate"><b>Gate 1 · Entry Check (kemampuan)</b>Tugas kecil: fetch dari satu API publik, <code>.map()</code> hasilnya, render daftar. Lulus = boleh ikut. Ini melindungi ritme 20 jam dari peserta yang belum siap.</div>
+    <div class="gate"><b>Gate 2 · Setup Check (environment)</b>Kirim screenshot <code>npm run dev</code> berjalan di <code>localhost:3000</code> + <code>node -v</code> menampilkan v20+. Wajib sebelum Sesi 1. <b>Alasan:</b> instalasi yang gagal pada 15–20 pemula bisa menghabiskan 60–90 menit Sesi 1 dan merusak seluruh jadwal. Sediakan sesi bantuan setup daring sebelum hari-H.</div>
+  </div>
+
+  <div class="sectop"><h2 class="sec">Tech Stack</h2></div>
+  <div class="stack">
+    <span class="tchip">Next.js 16 · App Router</span>
+    <span class="tchip js">React · JavaScript (JSX)</span>
+    <span class="tchip">Tailwind CSS</span>
+    <span class="tchip api">API Katalog · disediakan panitia</span>
+    <span class="tchip">Git &amp; GitHub</span>
+    <span class="tchip">Vercel</span>
+    <span class="tchip ai">Gemini · chat generatif</span>
+  </div>
+
+  <!-- SESSIONS -->
+  <div id="sesi" class="sectop"><h2 class="sec">Rancangan 5 Sesi</h2></div>
+  <div class="stabs" id="stabs"></div>
+  <div class="panel">
+    <div class="phead">
+      <div><span class="eyebrow" id="pEy">Sesi 1</span><div class="big" id="pTitle">—</div></div>
+      <div class="bignum" id="pNum">1</div>
+    </div>
+    <div class="goal anim" id="pGoal"></div>
+    <div class="ckpt anim" id="pCkpt"></div>
+    <div class="pgrid">
+      <div class="rundown anim" id="pRun"></div>
+      <div class="side anim" id="pSide"></div>
+    </div>
+  </div>
+
+  <!-- OPS -->
+  <div id="operasional" class="sectop"><h2 class="sec">Operasional — Penentu Kelulusan Pemula</h2></div>
+  <div class="ops">
+    <div class="op">
+      <div class="num2">OPS 01</div>
+      <h4>Checkpoint starter repo</h4>
+      <p>Mentor menyiapkan branch <code>sesi-2-start</code>, <code>sesi-3-start</code>, <code>sesi-4-start</code>. Peserta yang tertinggal atau PR-nya belum selesai cukup <code>git clone</code> lalu ikut lagi dengan kecepatan penuh. <b>Ini pengaman terpenting</b> — tanpanya, tertinggal satu sesi berarti tidak bisa deploy di Sesi 4.</p>
+    </div>
+    <div class="op">
+      <div class="num2">OPS 02</div>
+      <h4>Rasio mentor 1 : 5</h4>
+      <p>Pemula diselamatkan saat debugging langsung, bukan saat materi. Targetkan 1 mentor per 5 peserta, dan tempatkan mentor terbaik di <b>Sesi 3</b> — sesi tersulit (Server vs Client + fetch + dynamic route).</p>
+    </div>
+    <div class="op">
+      <div class="num2">OPS 03</div>
+      <h4>Mentor build duluan</h4>
+      <p>Setiap mentor wajib membangun sendiri project toko UMKM ini sampai live <b>sebelum Sesi 1</b>. Mentor yang belum pernah menyentuh App Router tidak bisa menolong saat build peserta gagal.</p>
+    </div>
+  </div>
+
+  <!-- ================= API DOCS ================= -->
+  <div id="api" class="sectop"><h2 class="sec">Dokumentasi API Katalog UMKM</h2></div>
+
+  <div class="draft">
+    <span class="t">Baca ini dulu</span>
+    <h3>Bagian ini adalah kontrak yang diusulkan, bukan API yang sudah berjalan</h3>
+    <p>API katalog akan <b>disediakan panitia</b>, namun bentuk datanya belum ditetapkan. Bagian ini menetapkan <b>kontrak</b> yang bisa langsung dibangun oleh developer API panitia — sekaligus menjadi acuan tunggal bagi instruktur, mentor, dan peserta.</p>
+    <p><b>Kenapa penting:</b> Sesi 3 seluruhnya bergantung pada bentuk response ini. Jika API berubah setelah modul ditulis, materi dan kode peserta ikut rusak. Kunci kontrak ini <b>sebelum modul Sesi 3 disusun</b>.</p>
+    <p><b>Aksi:</b> panitia mengonfirmasi/menyesuaikan → LPE mengunci → mentor membangun project dengan API ini sebelum Sesi 1.</p>
+  </div>
+
+  <div class="baseinfo">
+    <div class="bi">
+      <div class="h">Base URL — perlu diisi panitia</div>
+      <div class="v">https://api.[domain-panitia]/v1</div>
+      <p>Wajib HTTPS. Jika HTTP, fetch akan gagal saat project sudah live di Vercel (mixed content).</p>
+    </div>
+    <div class="bi">
+      <div class="h">Aturan umum</div>
+      <div class="v">Content-Type: application/json</div>
+      <p>Hanya metode GET. Tanpa API key (menghindarkan pemula dari urusan env var &amp; secret). CORS harus mengizinkan <code>*</code> atau domain <code>*.vercel.app</code>.</p>
+    </div>
+  </div>
+
+  <p class="lead"><b>Endpoint dipakai di sesi mana:</b></p>
+  <div class="apimap">
+    <div class="mp"><div class="num2">SESI 1–2</div><h4>Belum dipakai</h4><p>Peserta memakai data contoh lokal (<code>data/contoh-produk.js</code>) agar fokus ke component &amp; props.</p></div>
+    <div class="mp"><div class="num2">SESI 3</div><h4>Inti sesi</h4><p><code>/produk</code>, <code>/produk/{slug}</code>, <code>/kategori</code>, <code>/toko</code> — seluruh fetch nyata terjadi di sini.</p></div>
+    <div class="mp"><div class="num2">SESI 4</div><h4>Metadata &amp; gambar</h4><p>Field <code>gambar</code> untuk <code>next/image</code>; <code>nama</code> &amp; <code>deskripsi</code> untuk SEO.</p></div>
+    <div class="mp"><div class="num2">SESI 5</div><h4>Demo</h4><p>API harus tetap online &amp; stabil saat Demo Day — semua toko peserta menariknya bersamaan.</p></div>
+  </div>
+
+  <p class="lead">Empat endpoint. Sengaja dibuat minimal: cukup untuk membangun seluruh situs toko, tanpa konsep yang membingungkan pemula (tanpa pagination, tanpa auth, tanpa nested resource).</p>
+
+  <!-- /toko -->
+  <div class="ep">
+    <div class="head"><span class="verb">GET</span><span class="path">/toko</span><span class="epuse">Landing · Tentang · CTA WhatsApp</span></div>
+    <div class="bodyx">
+      <p class="desc">Profil toko. Dipakai untuk hero di landing page, halaman <code>/tentang</code>, footer, dan — paling penting — nomor WhatsApp untuk tombol pesan.</p>
+      <div class="codewrap">
+        <div class="codehead"><span>Response 200</span><button class="cpy">Copy</button></div>
+        <pre>{
+  <span class="ck">"nama"</span>: <span class="cs">"Warung Sasak Rasa"</span>,
+  <span class="ck">"tagline"</span>: <span class="cs">"Masakan Lombok autentik sejak 2015"</span>,
+  <span class="ck">"deskripsi"</span>: <span class="cs">"Warung keluarga di Mataram yang menyajikan..."</span>,
+  <span class="ck">"whatsapp"</span>: <span class="cs">"6281234567890"</span>,
+  <span class="ck">"alamat"</span>: <span class="cs">"Jl. Pejanggik No. 12, Mataram, NTB"</span>,
+  <span class="ck">"jam_buka"</span>: <span class="cs">"Senin–Sabtu, 08.00–21.00"</span>,
+  <span class="ck">"instagram"</span>: <span class="cs">"warungsasakrasa"</span>,
+  <span class="ck">"logo"</span>: <span class="cs">"https://cdn.example.com/toko/logo.png"</span>
+}</pre>
+      </div>
+      <table>
+        <tr><th>Field</th><th>Tipe</th><th>Catatan</th></tr>
+        <tr><td>nama</td><td class="ty">string</td><td>Nama toko — dipakai di hero &amp; title metadata</td></tr>
+        <tr><td>tagline</td><td class="ty">string</td><td>Satu kalimat pendek untuk hero</td></tr>
+        <tr><td>deskripsi</td><td class="ty">string</td><td>Paragraf untuk halaman /tentang</td></tr>
+        <tr><td>whatsapp</td><td class="ty">string</td><td><b>Format wajib: kode negara tanpa <code>+</code> dan tanpa spasi</b> (contoh <code>6281…</code>, bukan <code>0812…</code>). Salah format = tombol pesan tidak berfungsi.</td></tr>
+        <tr><td>alamat</td><td class="ty">string</td><td>Untuk section kontak/lokasi</td></tr>
+        <tr><td>jam_buka</td><td class="ty">string</td><td>Teks bebas, bukan struktur — sengaja disederhanakan</td></tr>
+        <tr><td>instagram</td><td class="ty">string</td><td>Username saja, tanpa <code>@</code> dan tanpa URL</td></tr>
+        <tr><td>logo</td><td class="ty">string (url)</td><td>URL absolut HTTPS</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- /kategori -->
+  <div class="ep">
+    <div class="head"><span class="verb">GET</span><span class="path">/kategori</span><span class="epuse">Filter katalog</span></div>
+    <div class="bodyx">
+      <p class="desc">Daftar kategori untuk tombol filter di halaman <code>/produk</code>. Dipisah dari produk agar peserta tidak perlu menurunkan kategori unik dari array produk (konsep terlalu berat untuk Sesi 2–3).</p>
+      <div class="codewrap">
+        <div class="codehead"><span>Response 200</span><button class="cpy">Copy</button></div>
+        <pre>[
+  { <span class="ck">"slug"</span>: <span class="cs">"makanan"</span>,   <span class="ck">"nama"</span>: <span class="cs">"Makanan"</span> },
+  { <span class="ck">"slug"</span>: <span class="cs">"minuman"</span>,   <span class="ck">"nama"</span>: <span class="cs">"Minuman"</span> },
+  { <span class="ck">"slug"</span>: <span class="cs">"oleh-oleh"</span>, <span class="ck">"nama"</span>: <span class="cs">"Oleh-oleh"</span> }
+]</pre>
+      </div>
+      <div class="note"><b class="lbl2">Catatan desain</b>Response berupa array langsung, bukan dibungkus <code>{ "data": [...] }</code>. Konsisten di semua endpoint list — satu pola saja untuk dihafal pemula.</div>
+    </div>
+  </div>
+
+  <!-- /produk -->
+  <div class="ep">
+    <div class="head"><span class="verb">GET</span><span class="path">/produk</span><span class="epuse">Sesi 3 · grid katalog</span></div>
+    <div class="bodyx">
+      <p class="desc">Daftar seluruh produk. Endpoint utama program — dipakai untuk grid katalog dan highlight produk unggulan di landing page.</p>
+      <table>
+        <tr><th>Query param</th><th>Tipe</th><th>Catatan</th></tr>
+        <tr><td>?kategori=</td><td class="ty">string</td><td>Opsional. Filter berdasarkan slug kategori (<code>?kategori=makanan</code>)</td></tr>
+        <tr><td>?unggulan=</td><td class="ty">boolean</td><td>Opsional. <code>?unggulan=true</code> untuk highlight di landing</td></tr>
+      </table>
+      <div class="codewrap">
+        <div class="codehead"><span>Response 200</span><button class="cpy">Copy</button></div>
+        <pre>[
+  {
+    <span class="ck">"id"</span>: <span class="cn">1</span>,
+    <span class="ck">"slug"</span>: <span class="cs">"ayam-taliwang"</span>,
+    <span class="ck">"nama"</span>: <span class="cs">"Ayam Taliwang"</span>,
+    <span class="ck">"deskripsi"</span>: <span class="cs">"Ayam bakar khas Lombok dengan bumbu pedas..."</span>,
+    <span class="ck">"harga"</span>: <span class="cn">35000</span>,
+    <span class="ck">"kategori"</span>: <span class="cs">"makanan"</span>,
+    <span class="ck">"gambar"</span>: <span class="cs">"https://cdn.example.com/produk/ayam-taliwang.jpg"</span>,
+    <span class="ck">"unggulan"</span>: <span class="ck">true</span>,
+    <span class="ck">"tersedia"</span>: <span class="ck">true</span>
+  }
+]</pre>
+      </div>
+      <table>
+        <tr><th>Field</th><th>Tipe</th><th>Catatan</th></tr>
+        <tr><td>id</td><td class="ty">number</td><td>Dipakai sebagai <code>key</code> saat <code>.map()</code></td></tr>
+        <tr><td>slug</td><td class="ty">string</td><td><b>Unik.</b> Dipakai untuk URL <code>/produk/[slug]</code>. Huruf kecil, tanpa spasi, tanpa karakter khusus.</td></tr>
+        <tr><td>nama</td><td class="ty">string</td><td>Judul kartu &amp; title metadata halaman detail</td></tr>
+        <tr><td>deskripsi</td><td class="ty">string</td><td>Teks utuh — pemotongan dilakukan di frontend (latihan bagus)</td></tr>
+        <tr><td>harga</td><td class="ty">number</td><td><b>Angka murni dalam Rupiah</b> (<code>35000</code>), bukan string <code>"Rp 35.000"</code>. Format tampilan tugas frontend — <code>toLocaleString('id-ID')</code>.</td></tr>
+        <tr><td>kategori</td><td class="ty">string</td><td>Harus cocok dengan <code>slug</code> di <code>/kategori</code></td></tr>
+        <tr><td>gambar</td><td class="ty">string (url)</td><td>URL absolut HTTPS. <b>Domain-nya wajib didaftarkan</b> di <code>next.config</code> — lihat catatan di bawah.</td></tr>
+        <tr><td>unggulan</td><td class="ty">boolean</td><td>Untuk highlight di landing page</td></tr>
+        <tr><td>tersedia</td><td class="ty">boolean</td><td>Latihan conditional rendering: badge "Habis"</td></tr>
+      </table>
+      <div class="note warn"><b class="lbl2">Wajib · jebakan Next.js paling sering</b><code>next/image</code> menolak gambar dari domain yang belum didaftarkan, dan errornya membingungkan pemula. Domain CDN gambar <b>harus final &amp; diumumkan sejak Sesi 1</b> agar bisa dimasukkan ke <code>remotePatterns</code> di <code>next.config.mjs</code>. Jangan pakai banyak domain berbeda.</div>
+    </div>
+  </div>
+
+  <!-- /produk/{slug} -->
+  <div class="ep">
+    <div class="head"><span class="verb">GET</span><span class="path">/produk/{slug}</span><span class="epuse">Sesi 3 · halaman detail</span></div>
+    <div class="bodyx">
+      <p class="desc">Satu produk berdasarkan slug. Contoh: <code>/produk/ayam-taliwang</code>. Bentuk response sama persis dengan satu item di <code>/produk</code> (bukan array).</p>
+      <div class="codewrap">
+        <div class="codehead"><span>Response 200</span><button class="cpy">Copy</button></div>
+        <pre>{
+  <span class="ck">"id"</span>: <span class="cn">1</span>,
+  <span class="ck">"slug"</span>: <span class="cs">"ayam-taliwang"</span>,
+  <span class="ck">"nama"</span>: <span class="cs">"Ayam Taliwang"</span>,
+  <span class="ck">"deskripsi"</span>: <span class="cs">"Ayam bakar khas Lombok dengan bumbu pedas..."</span>,
+  <span class="ck">"harga"</span>: <span class="cn">35000</span>,
+  <span class="ck">"kategori"</span>: <span class="cs">"makanan"</span>,
+  <span class="ck">"gambar"</span>: <span class="cs">"https://cdn.example.com/produk/ayam-taliwang.jpg"</span>,
+  <span class="ck">"unggulan"</span>: <span class="ck">true</span>,
+  <span class="ck">"tersedia"</span>: <span class="ck">true</span>
+}</pre>
+      </div>
+      <div class="codewrap">
+        <div class="codehead"><span>Response 404 — slug tidak ditemukan</span><button class="cpy">Copy</button></div>
+        <pre>{
+  <span class="ck">"error"</span>: <span class="cs">"Produk tidak ditemukan"</span>
+}</pre>
+      </div>
+      <div class="note"><b class="lbl2">Kenapa 404 penting</b>Status 404 (bukan 200 dengan body kosong) memungkinkan peserta belajar <code>notFound()</code> bawaan Next.js — materi "empty state" di Sesi 3.</div>
+    </div>
+  </div>
+
+  <!-- CODE EXAMPLES -->
+  <div class="sectop"><h2 class="sec">Contoh Kode (React + JavaScript)</h2></div>
+  <p class="lead">Contoh siap pakai untuk modul mentor. Ditulis JavaScript — konsisten dengan silabus ini — dan memakai pola Next.js 16 (App Router, <code>params</code> async).</p>
+
+  <div class="codewrap">
+    <div class="codehead"><span>lib/api.js — satu tempat untuk semua fetch</span><button class="cpy">Copy</button></div>
+    <pre><span class="cc">// Ubah satu baris ini kalau base URL berubah.</span>
+<span class="ck">const</span> BASE = <span class="cs">"https://api.[domain-panitia]/v1"</span>;
+
+<span class="ck">export async function</span> getToko() {
+  <span class="ck">const</span> res = <span class="ck">await</span> fetch(<span class="cs">`${BASE}/toko`</span>);
+  <span class="ck">if</span> (!res.ok) <span class="ck">throw new</span> Error(<span class="cs">"Gagal memuat profil toko"</span>);
+  <span class="ck">return</span> res.json();
+}
+
+<span class="ck">export async function</span> getProduk(kategori) {
+  <span class="ck">const</span> url = kategori
+    ? <span class="cs">`${BASE}/produk?kategori=${kategori}`</span>
+    : <span class="cs">`${BASE}/produk`</span>;
+  <span class="ck">const</span> res = <span class="ck">await</span> fetch(url, { next: { revalidate: <span class="cn">60</span> } });
+  <span class="ck">if</span> (!res.ok) <span class="ck">throw new</span> Error(<span class="cs">"Gagal memuat produk"</span>);
+  <span class="ck">return</span> res.json();
+}
+
+<span class="ck">export async function</span> getProdukBySlug(slug) {
+  <span class="ck">const</span> res = <span class="ck">await</span> fetch(<span class="cs">`${BASE}/produk/${slug}`</span>);
+  <span class="ck">if</span> (res.status === <span class="cn">404</span>) <span class="ck">return null</span>;  <span class="cc">// ditangani dengan notFound()</span>
+  <span class="ck">if</span> (!res.ok) <span class="ck">throw new</span> Error(<span class="cs">"Gagal memuat produk"</span>);
+  <span class="ck">return</span> res.json();
+}</pre>
+  </div>
+
+  <div class="codewrap">
+    <div class="codehead"><span>app/produk/page.js — grid katalog (Server Component)</span><button class="cpy">Copy</button></div>
+    <pre><span class="ck">import</span> { getProduk } <span class="ck">from</span> <span class="cs">"@/lib/api"</span>;
+<span class="ck">import</span> ProductCard <span class="ck">from</span> <span class="cs">"@/components/ProductCard"</span>;
+
+<span class="cc">// Tanpa "use client" → ini Server Component. Fetch langsung, tanpa useEffect.</span>
+<span class="ck">export default async function</span> ProdukPage() {
+  <span class="ck">const</span> produk = <span class="ck">await</span> getProduk();
+
+  <span class="ck">return</span> (
+    &lt;main className=<span class="cs">"mx-auto max-w-6xl px-4 py-10"</span>&gt;
+      &lt;h1 className=<span class="cs">"text-3xl font-bold"</span>&gt;Katalog Produk&lt;/h1&gt;
+
+      &lt;div className=<span class="cs">"mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"</span>&gt;
+        {produk.map((item) =&gt; (
+          &lt;ProductCard key={item.id} produk={item} /&gt;
+        ))}
+      &lt;/div&gt;
+    &lt;/main&gt;
+  );
+}</pre>
+  </div>
+
+  <div class="codewrap">
+    <div class="codehead"><span>app/produk/[slug]/page.js — detail + CTA WhatsApp</span><button class="cpy">Copy</button></div>
+    <pre><span class="ck">import</span> { notFound } <span class="ck">from</span> <span class="cs">"next/navigation"</span>;
+<span class="ck">import</span> Image <span class="ck">from</span> <span class="cs">"next/image"</span>;
+<span class="ck">import</span> { getProdukBySlug, getToko } <span class="ck">from</span> <span class="cs">"@/lib/api"</span>;
+
+<span class="cc">// PENTING (Next.js 16): params adalah Promise → wajib di-await.</span>
+<span class="ck">export async function</span> generateMetadata({ params }) {
+  <span class="ck">const</span> { slug } = <span class="ck">await</span> params;
+  <span class="ck">const</span> produk = <span class="ck">await</span> getProdukBySlug(slug);
+  <span class="ck">if</span> (!produk) <span class="ck">return</span> { title: <span class="cs">"Produk tidak ditemukan"</span> };
+  <span class="ck">return</span> { title: produk.nama, description: produk.deskripsi };
+}
+
+<span class="ck">export default async function</span> DetailProduk({ params }) {
+  <span class="ck">const</span> { slug } = <span class="ck">await</span> params;
+  <span class="ck">const</span> [produk, toko] = <span class="ck">await</span> Promise.all([
+    getProdukBySlug(slug),
+    getToko(),
+  ]);
+
+  <span class="ck">if</span> (!produk) notFound();  <span class="cc">// → menampilkan not-found.js</span>
+
+  <span class="ck">const</span> pesan = <span class="cs">`Halo, saya mau pesan ${produk.nama}`</span>;
+  <span class="ck">const</span> waLink = <span class="cs">`https://wa.me/${toko.whatsapp}?text=${encodeURIComponent(pesan)}`</span>;
+
+  <span class="ck">return</span> (
+    &lt;main className=<span class="cs">"mx-auto max-w-4xl px-4 py-10"</span>&gt;
+      &lt;Image
+        src={produk.gambar}
+        alt={produk.nama}
+        width={800}
+        height={600}
+        className=<span class="cs">"rounded-lg object-cover"</span>
+      /&gt;
+      &lt;h1 className=<span class="cs">"mt-6 text-3xl font-bold"</span>&gt;{produk.nama}&lt;/h1&gt;
+      &lt;p className=<span class="cs">"mt-2 text-2xl"</span>&gt;
+        Rp {produk.harga.toLocaleString(<span class="cs">"id-ID"</span>)}
+      &lt;/p&gt;
+      &lt;p className=<span class="cs">"mt-4 text-gray-600"</span>&gt;{produk.deskripsi}&lt;/p&gt;
+
+      &lt;a
+        href={waLink}
+        target=<span class="cs">"_blank"</span>
+        rel=<span class="cs">"noopener noreferrer"</span>
+        className=<span class="cs">"mt-6 inline-block rounded-lg bg-green-600 px-6 py-3 font-semibold text-white"</span>
+      &gt;
+        Pesan via WhatsApp
+      &lt;/a&gt;
+    &lt;/main&gt;
+  );
+}</pre>
+  </div>
+
+  <div class="codewrap">
+    <div class="codehead"><span>next.config.mjs — wajib, agar next/image menerima gambar API</span><button class="cpy">Copy</button></div>
+    <pre><span class="cc">/** @type {import('next').NextConfig} */</span>
+<span class="ck">const</span> nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: <span class="cs">"https"</span>,
+        hostname: <span class="cs">"cdn.example.com"</span>,  <span class="cc">// ← ganti dengan domain CDN panitia</span>
+      },
+    ],
+  },
+};
+
+<span class="ck">export default</span> nextConfig;</pre>
+  </div>
+
+  <!-- FALLBACK DATA -->
+  <div class="sectop"><h2 class="sec">Data Contoh (Sesi 1–2 &amp; Cadangan)</h2></div>
+  <p class="lead">Sesi 1–2 memakai data lokal dengan <b>bentuk yang persis sama</b> seperti response API. Tujuannya dua: peserta fokus ke component tanpa gangguan jaringan, dan saat Sesi 3 tiba, perpindahan ke API cukup mengganti sumber data — bukan menulis ulang komponen. File ini juga jadi <b>cadangan jika API bermasalah saat sesi berlangsung</b>.</p>
+  <div class="codewrap">
+    <div class="codehead"><span>data/contoh-produk.js</span><button class="cpy">Copy</button></div>
+    <pre><span class="ck">export const</span> contohProduk = [
+  {
+    id: <span class="cn">1</span>,
+    slug: <span class="cs">"ayam-taliwang"</span>,
+    nama: <span class="cs">"Ayam Taliwang"</span>,
+    deskripsi: <span class="cs">"Ayam bakar khas Lombok dengan bumbu pedas."</span>,
+    harga: <span class="cn">35000</span>,
+    kategori: <span class="cs">"makanan"</span>,
+    gambar: <span class="cs">"https://cdn.example.com/produk/ayam-taliwang.jpg"</span>,
+    unggulan: <span class="ck">true</span>,
+    tersedia: <span class="ck">true</span>,
+  },
+  {
+    id: <span class="cn">2</span>,
+    slug: <span class="cs">"plecing-kangkung"</span>,
+    nama: <span class="cs">"Plecing Kangkung"</span>,
+    deskripsi: <span class="cs">"Kangkung segar dengan sambal tomat khas Lombok."</span>,
+    harga: <span class="cn">15000</span>,
+    kategori: <span class="cs">"makanan"</span>,
+    gambar: <span class="cs">"https://cdn.example.com/produk/plecing.jpg"</span>,
+    unggulan: <span class="ck">false</span>,
+    tersedia: <span class="ck">true</span>,
+  },
+];</pre>
+  </div>
+
+  <!-- API CHECKLIST -->
+  <div class="sectop"><h2 class="sec">Checklist untuk Panitia — Sebelum Modul Sesi 3 Ditulis</h2></div>
+  <p class="lead">Semua poin di bawah harus <b>final</b> sebelum mentor menyusun modul dan membangun project contoh. Perubahan setelah itu akan merusak materi yang sudah jadi.</p>
+  <ul class="check twocol">
+    <li><b>Base URL final</b> &amp; sudah HTTPS</li>
+    <li><b>CORS</b> mengizinkan <code>*</code> atau <code>*.vercel.app</code></li>
+    <li><b>Domain CDN gambar</b> final &amp; hanya satu domain</li>
+    <li><b>Nama field</b> dikonfirmasi (atau kirim perubahannya ke LPE)</li>
+    <li><code>harga</code> dikirim sebagai <b>angka</b>, bukan string</li>
+    <li><code>whatsapp</code> berformat <code>628…</code>, bukan <code>0812…</code></li>
+    <li><code>slug</code> unik, huruf kecil, tanpa spasi</li>
+    <li>404 dikembalikan untuk slug yang tidak ada</li>
+    <li>Minimal <b>8–12 produk</b> &amp; 3 kategori agar grid terasa nyata</li>
+    <li>Foto produk asli (bukan placeholder) — Sesi 4 soal optimasi gambar</li>
+    <li>API <b>online &amp; stabil</b> di seluruh jadwal, terutama Demo Day</li>
+    <li>Ada <b>penanggung jawab API</b> yang bisa dihubungi saat sesi berlangsung</li>
+  </ul>
+
+  <!-- STANDARD -->
+  <div id="standar" class="sectop"><h2 class="sec">Standar Minimum Project</h2></div>
+  <ul class="clean twocol">
+    <li>Ditulis dengan <b>React + JavaScript (JSX)</b>, struktur file rapi</li>
+    <li>Min. 4 halaman routing berfungsi (landing, tentang, katalog, detail <code>[slug]</code>)</li>
+    <li>Min. 2 reusable component (ProductCard, Button, dll.)</li>
+    <li>Data katalog dari API panitia (bukan hardcode) + loading &amp; error state</li>
+    <li>Halaman detail produk + tombol <b>Pesan via WhatsApp</b></li>
+    <li>Live &amp; dapat diakses di Vercel</li>
+    <li>Metadata/SEO dasar + foto produk teroptimasi (<code>next/image</code>)</li>
+    <li>Responsif (mobile-first) + repo GitHub dengan commit history jelas</li>
+  </ul>
+
+  <div class="sectop"><h2 class="sec">What's Next — Tier Lanjutan (Setelah Program)</h2></div>
+  <div class="nextfirst"><span class="t">Langkah lanjut #1 · prioritas</span><b style="font-family:var(--display);font-size:14px">TypeScript.</b> Standar default industri frontend hari ini. Project toko yang sudah jadi adalah bahan latihan migrasi terbaik: ubah <code>.jsx</code> → <code>.tsx</code>, ketik props komponen, lalu ketik response API katalog.</div>
+  <p class="lead">Bar frontend 2026 berlanjut setelah deploy. Program ini adalah <b>launchpad, bukan garis finish</b>:</p>
+  <ul class="clean coral twocol">
+    <li><b>Testing</b> — React Testing Library (komponen) + Playwright (alur kritis)</li>
+    <li><b>Performa</b> — Core Web Vitals (LCP, CLS, INP) + audit Lighthouse rutin</li>
+    <li><b>State &amp; data</b> — Zustand / TanStack Query</li>
+    <li><b>Aksesibilitas</b> — audit WCAG, screen reader</li>
+    <li><b>Backend sendiri</b> — Supabase / Route Handler untuk CRUD produk</li>
+    <li><b>Streaming LLM UI</b> — skill yang naik paling cepat di 2026</li>
+  </ul>
+
+  <!-- CHANGES -->
+  <div id="perubahan" class="sectop"><h2 class="sec">Yang Diubah dari Silabus Panitia Unram</h2></div>
+  <div class="change" id="changeTable">
+    <div class="ch-head old">Silabus Awal (Panitia)</div>
+    <div class="ch-head new">Revisi LPE</div>
+  </div>
+
+  <footer>
+    <span>LPE · Build from Lombok, impact the world</span>
+    <span>Silabus + Dokumentasi API · v7 · React/JavaScript · Gemini</span>
+  </footer>
+</div>
+
+<script>
+/* logo fallback */
+(function(){
+  const img=document.getElementById('lpeLogo'), fb=document.getElementById('lpeFallback');
+  img.addEventListener('error',()=>{img.hidden=true;fb.hidden=false;});
+})();
+
+const SESSIONS = [
+  { n:1, title:'Setup, React Dasar & Routing', demo:false,
+    goal:'Project ter-scaffold (JavaScript + Tailwind + App Router), terhubung GitHub, konsep JSX/component dipahami, dan kerangka halaman toko + navigasi berjalan.',
+    ckpt:'Checkpoint repo: — (semua mulai dari nol, environment sudah lulus Gate 2)',
+    run:[
+      ['00:00','Cek cepat environment (sudah lulus pre-work) · create-next-app (JavaScript, Tailwind, App Router) + tur struktur folder · git init → commit → push','build'],
+      ['00:45','React fundamental: JSX, function component, props, komposisi — dari HTML statis ke component','aifree'],
+      ['01:40','Istirahat','brk'],
+      ['01:55','App Router & file-based routing: layout toko, navigasi <Link>, dasar Tailwind','core'],
+      ['02:45','Build kerangka: / (landing), /tentang, /produk + komponen Navbar · commit & push','build'],
+      ['03:45','Wrap-up + briefing kebijakan AI: Gemini = usulan, dokumentasi resmi = kebenaran','']
+    ],
+    deliver:'Repo GitHub berisi kerangka situs toko yang sudah ter-routing dengan Navbar reusable.',
+    ai:'Blok React fundamental (45\u2032) dikerjakan AI-free untuk membangun otot dasar. Setelah itu Gemini boleh dipakai untuk menjelaskan error setup/routing. Briefing wajib: Gemini sering menyarankan Pages Router — tolak, kita pakai App Router.',
+    pr:'Rapikan Navbar + susun struktur section hero pada halaman landing.' },
+
+  { n:2, title:'Component, Props & State', demo:false,
+    goal:'Komponen toko reusable (Hero, ProductCard, Button), layout responsif, dan filter kategori interaktif.',
+    ckpt:'Checkpoint repo: git clone branch sesi-2-start — kerangka routing + Navbar sudah jadi',
+    run:[
+      ['00:00','Review PR + pendalaman props: memecah UI toko jadi component (props sebagai kontrak)','core'],
+      ['00:45','Komposisi: Hero, Navbar, Footer, ProductCard · grid katalog Tailwind (mobile-first)','build'],
+      ['01:40','Istirahat','brk'],
+      ['01:55','Conditional rendering + list rendering .map() & key — merender daftar produk','core'],
+      ['02:45','useState + event handler: filter kategori produk (Semua / Makanan / Minuman / dll.)','build'],
+      ['03:45','Wrap-up + PR','']
+    ],
+    deliver:'Landing dengan Hero + grid katalog responsif (data contoh) + filter kategori client-side yang berfungsi.',
+    ai:'Gemini untuk membuat variasi komponen & merapikan styling Tailwind — hasilnya wajib dibaca, diketik sendiri, lalu diuji di browser sebelum di-commit.',
+    pr:'Tambah komponen reusable (Button / Badge harga) + section "Tentang Toko".' },
+
+  { n:3, title:'Data: Server vs Client Component', demo:false,
+    goal:'Menarik data produk live dari API panitia, memahami model mental Server/Client, halaman detail, dan loading/error state. Sesi tersulit — tempatkan mentor terbaik di sini.',
+    ckpt:'Checkpoint repo: git clone branch sesi-3-start — komponen + grid katalog sudah jadi',
+    run:[
+      ['00:00','Konsep inti: Server Component vs Client Component — "di mana kode berjalan?"','core'],
+      ['00:55','Baca dokumentasi API katalog → fetch produk di Server Component → render grid dari data nyata','build'],
+      ['01:40','Istirahat','brk'],
+      ['01:55','Dynamic route /produk/[slug] (params async di Next 16) — detail produk + tombol Pesan via WhatsApp (wa.me)','build'],
+      ['02:45','loading.js & error.js + state kosong (produk tidak ditemukan)','core'],
+      ['03:45','Wrap-up + PR','']
+    ],
+    deliver:'Katalog menarik data live dari API panitia; halaman detail produk berfungsi dengan CTA WhatsApp; loading/error/empty tertangani.',
+    ai:'Use case terbaik: tempel contoh JSON response API panitia ke Gemini, minta dijelaskan strukturnya. Peringatan mentor: Gemini kemungkinan menyarankan getServerSideProps atau params sinkron — keduanya salah di Next 16, cek dokumentasi resmi.',
+    pr:'Tambah breadcrumb + tombol kembali ke katalog pada halaman detail.' },
+
+  { n:4, title:'Optimasi, SEO & Deploy', demo:false,
+    goal:'Membawa toko ke kondisi production-ready, ramah SEO, dan membuatnya LIVE di internet.',
+    ckpt:'Checkpoint repo: git clone branch sesi-4-start — katalog + detail produk sudah fetch data nyata',
+    run:[
+      ['00:00','Review fetch + optimasi foto produk dengan next/image','core'],
+      ['00:45','Metadata & SEO: generateMetadata (nama toko, judul per produk) + Open Graph','build'],
+      ['01:40','Istirahat','brk'],
+      ['01:55','Aksesibilitas dasar: HTML semantik, alt text foto produk, fokus keyboard','core'],
+      ['02:35','Deploy ke Vercel: hubungkan GitHub → URL live · cek build','deploy'],
+      ['03:45','Lighthouse check cepat + PR','']
+    ],
+    deliver:'Toko UMKM live di Vercel, foto produk teroptimasi, metadata/SEO lengkap.',
+    ai:'Gemini untuk membaca hasil Lighthouse & mengusulkan perbaikan a11y/performa — peserta yang memilih perbaikan mana yang dikerjakan.',
+    pr:'Perbaiki min. 2 temuan Lighthouse / aksesibilitas + isi metadata Open Graph.' },
+
+  { n:5, title:'Demo Day & What\u0027s Next', demo:true,
+    goal:'Polish akhir, presentasi toko live, dan arah pengembangan setelah program — dimulai dari TypeScript.',
+    ckpt:'Checkpoint repo: — (setiap peserta mempresentasikan project miliknya sendiri)',
+    run:[
+      ['00:00','Mentor-led troubleshoot & polish terakhir','core'],
+      ['01:00','Persiapan presentasi: cara mendemo toko & menjelaskan keputusan teknis','build'],
+      ['01:45','Istirahat','brk'],
+      ['02:00','Demo Day: tiap peserta presentasi toko live → feedback instruktur & mentor','demo'],
+      ['03:15','"What\u0027s Next" tier — TypeScript sebagai langkah #1 (demo singkat migrasi .jsx → .tsx) + portfolio (README + commit history) + closing','']
+    ],
+    deliver:'Toko UMKM final dipresentasikan, live, dan menjadi item portfolio peserta.',
+    ai:'Refleksi: di mana Gemini membantu, di mana ia salah/usang, dan bagaimana peserta tetap memegang keputusan sepanjang project.',
+    pr:'—' }
+];
+
+const CHANGES = [
+  ['Next.js 14/13, Node 18','Next.js 16 (App Router), Node 20+'],
+  ['Bahasa tidak tegas — "JS dan TS dasar" lalu tidak dilanjutkan','Tegas: React + JavaScript sepanjang program, TypeScript jadi langkah lanjut #1'],
+  ['Tidak ada AI sama sekali','Gemini sebagai metode build, generatif & berbatas ("AI proposes, you decide")'],
+  ['Git/GitHub baru di minggu ke-4','Git sejak Sesi 1, commit tiap sesi'],
+  ['useAuth (custom hook) di minggu ke-2','Dihapus — diganti list & conditional rendering (lebih fundamental untuk pemula)'],
+  ['Server/Client + fetch + Supabase menumpuk di 1 minggu','Server/Client Component diberi sesi khusus (Sesi 3) + mentor terbaik'],
+  ['2 pilihan project (Anime / E-Commerce)','1 default nyata: Landing Page & Katalog Toko UMKM'],
+  ['Supabase vs localStorage (dua jalur)','1 API katalog disediakan panitia + kontraknya didokumentasikan di sini'],
+  ['Setup environment dikerjakan saat sesi berjalan','Setup jadi pre-work + Gate 2 (screenshot npm run dev) sebelum Sesi 1'],
+  ['Prasyarat tidak eksplisit','Prasyarat + entry check wajib sebelum Sesi 1'],
+  ['Tertinggal satu minggu = tidak bisa mengejar','Checkpoint starter repo tiap sesi (sesi-2-start, dst.)'],
+  ['Selesai = deploy','Ditambah tier "What\u0027s Next" — deploy ≠ selesai']
+];
+
+const $ = id=>document.getElementById(id);
+const tagLabel = {aifree:'AI-free',build:'Build',core:'Inti',deploy:'Deploy',demo:'Demo',brk:'Break'};
+
+const stabs = $('stabs');
+SESSIONS.forEach((s,i)=>{
+  const b=document.createElement('button');
+  b.className='stab'+(s.demo?' demo':'');
+  b.innerHTML=`<div class="sn">SESI ${s.n}</div><div class="st">${s.title}</div>`;
+  b.addEventListener('click',()=>render(i));
+  stabs.appendChild(b);
+});
+const tabs=[...stabs.children];
+
+function render(i){
+  const s=SESSIONS[i];
+  tabs.forEach((t,j)=>t.classList.toggle('active',j===i));
+  $('pEy').textContent='Sesi '+s.n+(s.demo?' · Demo Day':'');
+  $('pTitle').textContent=s.title;
+  $('pNum').textContent=s.n;
+  ['pGoal','pCkpt','pRun','pSide'].forEach(id=>$(id).classList.remove('run'));
+
+  $('pGoal').innerHTML=`<b>Tujuan Sesi</b>${s.goal}`;
+  $('pCkpt').innerHTML=`<b>Jaring pengaman</b>${esc(s.ckpt)}`;
+
+  let run='<div class="rdhead">Rundown · 4 Jam (incl. istirahat 15\u2032)</div>';
+  s.run.forEach(r=>{
+    const tg=r[2]?`<span class="tg ${r[2]}">${tagLabel[r[2]]}</span>`:'';
+    run+=`<div class="block"><div class="tm">${r[0]}</div><div class="ac">${esc(r[1])}${tg}</div></div>`;
+  });
+  $('pRun').innerHTML=run;
+
+  $('pSide').innerHTML=`
+    <div class="box deliver"><div class="bl"><span class="sq t"></span>Build Deliverable</div><p>${esc(s.deliver)}</p></div>
+    <div class="box ai"><div class="bl"><span class="sq i"></span>Gemini · metode build</div><p>${esc(s.ai)}</p></div>
+    <div class="box pr"><div class="bl"><span class="sq c"></span>PR untuk sesi berikutnya</div><p>${esc(s.pr)}</p></div>`;
+
+  void $('pGoal').offsetWidth;
+  ['pGoal','pCkpt','pRun','pSide'].forEach(id=>$(id).classList.add('run'));
+}
+function esc(t){return t.replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+const ct=$('changeTable');
+CHANGES.forEach(c=>{
+  const o=document.createElement('div'); o.className='ch-old'; o.innerHTML='<s>'+esc(c[0])+'</s>';
+  const n=document.createElement('div'); n.className='ch-new'; n.textContent=c[1];
+  ct.appendChild(o); ct.appendChild(n);
+});
+
+/* copy buttons */
+document.querySelectorAll('.cpy').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const pre = btn.closest('.codewrap').querySelector('pre');
+    navigator.clipboard.writeText(pre.innerText).then(()=>{
+      const old = btn.textContent;
+      btn.textContent = 'Copied';
+      setTimeout(()=>btn.textContent = old, 1400);
+    }).catch(()=>{
+      btn.textContent = 'Failed';
+      setTimeout(()=>btn.textContent = 'Copy', 1400);
+    });
+  });
+});
+
+/* nav scrollspy */
+const navLinks=[...document.querySelectorAll('.navinner a')];
+const targets=navLinks.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting){
+      const id='#'+en.target.id;
+      navLinks.forEach(a=>a.classList.toggle('on',a.getAttribute('href')===id));
+    }
+  });
+},{rootMargin:'-70px 0px -70% 0px',threshold:0});
+targets.forEach(t=>obs.observe(t));
+
+document.addEventListener('keydown',e=>{
+  if(e.target.closest('input,textarea')) return;
+  const cur=tabs.findIndex(t=>t.classList.contains('active'));
+  if(e.key==='ArrowRight'&&cur<SESSIONS.length-1)render(cur+1);
+  if(e.key==='ArrowLeft'&&cur>0)render(cur-1);
+});
+
+render(0);
+</script>
+</body>
+</html>
